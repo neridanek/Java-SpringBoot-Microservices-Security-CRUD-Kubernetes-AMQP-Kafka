@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: shape
+          uri: lb://SHAPE
+          predicates:
+             - Path=/api/v1/shape/**
+server:
+  port: 8083
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+zipkin:
+  base-url: http://zipkin:9411

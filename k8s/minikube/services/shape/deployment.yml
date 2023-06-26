@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shape
+  labels:
+    app: shape
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shape
+  template:
+    metadata:
+      name: shape
+      labels:
+        app: shape
+    spec:
+      containers:
+        - name: shape
+          image: neridan/shape:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+      restartPolicy: Always
